@@ -28,37 +28,49 @@ body { background-color: var(--bg); color: var(--text); font-family: 'Syne', san
   <div class="form-header"><h1>Анкета кандидата</h1><p>Вакансія: Інженер-геодезист / Землевпорядник</p></div>
   <form id="resume-form">
     <input type="hidden" name="access_key" value="7a7c94a8-8935-4659-88d0-1e900cb9460b">
+    
     <div class="form-group">
       <label>ПІБ *</label>
       <input type="text" name="name" required>
     </div>
+    
     <div class="form-group">
       <label>Телефон *</label>
       <input type="tel" name="phone" required>
     </div>
+    
     <div class="form-group">
       <label>Район проживання *</label>
       <select name="location" required>
-        <option value="" disabled selected>Оберіть</option>
+        <option value="" disabled selected>Оберіть регіон</option>
         <option value="Обухівський район">Обухівський район</option>
+        <option value="Фастівський район">Фастівський район</option>
+        <option value="Біла Церква / Білоцерківський район">Біла Церква / Білоцерківський район</option>
+        <option value="Інший регіон">Інший регіон</option>
       </select>
     </div>
+    
     <div class="form-group">
-      <label>Досвід *</label>
+      <label>Офіційний стаж роботи *</label>
       <select name="experience" required>
-        <option value="Від 1 до 3 років">Від 1 до 3 років</option>
+        <option value="" disabled selected>Оберіть стаж</option>
+        <option value="Немає офіційного досвіду">Немає офіційного досвіду</option>
+        <option value="Від 1 до 3 років">Від 1 до 3 років (підходить під сертифікат)</option>
+        <option value="Більше 3 років">Більше 3 років (підходить під сертифікат)</option>
       </select>
     </div>
+    
     <button type="submit" class="btn-submit">Надіслати</button>
     <div id="form-result"></div>
   </form>
 </div>
+
 <script>
 const form = document.getElementById('resume-form');
 const result = document.getElementById('form-result');
 form.addEventListener('submit', function(e) {
   e.preventDefault();
-  fetch('https://api.web3forms.com/submit', {
+  fetch('https://web3forms.com', {
     method: 'POST',
     headers: { 'Accept': 'application/json' },
     body: new FormData(form)
